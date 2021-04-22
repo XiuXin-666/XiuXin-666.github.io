@@ -1,32 +1,397 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>顺序表 | Hexo</title><meta name="keywords" content="数据结构"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="顺序表&amp;emsp;&amp;emsp;线性表的顺序存储又称顺序表。表中元素的逻辑顺序与其物理顺序相同。 定义&amp;emsp;&amp;emsp;静态定义：#define MAXSIZE 50;					&#x2F;&#x2F;定义线性表的最大长度typedef struct &amp;#123;    ElemType data[MAXSIZE];			&#x2F;&#x2F;顺序表的元素    int length;						&#x2F;&#x2F;顺序表的当前长度&amp;#125;S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺序表">
+<meta property="og:url" content="http://example.com/2021/04/22/%E9%A1%BA%E5%BA%8F%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="顺序表&amp;emsp;&amp;emsp;线性表的顺序存储又称顺序表。表中元素的逻辑顺序与其物理顺序相同。 定义&amp;emsp;&amp;emsp;静态定义：#define MAXSIZE 50;					&#x2F;&#x2F;定义线性表的最大长度typedef struct &amp;#123;    ElemType data[MAXSIZE];			&#x2F;&#x2F;顺序表的元素    int length;						&#x2F;&#x2F;顺序表的当前长度&amp;#125;S">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/town.png">
+<meta property="article:published_time" content="2021-04-22T13:20:07.707Z">
+<meta property="article:modified_time" content="2021-04-22T13:21:21.699Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/town.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/04/22/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9da7b87578e82e19690bd0e6bbf6f290";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-S9GN6Q5X0M"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-S9GN6Q5X0M');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swa" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-22 21:21:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/XiuXin.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">66</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-music"></i><span> Gallery</span></a></li><li><a class="site-page" href="/diary/"><i class="fa-fw fas fa-video"></i><span> Diary</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/town.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-music"></i><span> Gallery</span></a></li><li><a class="site-page" href="/diary/"><i class="fa-fw fas fa-video"></i><span> Diary</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">顺序表</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-04-22T13:20:07.707Z" title="Created 2021-04-22 21:20:07">2021-04-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-22T13:21:21.699Z" title="Updated 2021-04-22 21:21:21">2021-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>4min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h1><p>&emsp;&emsp;线性表的顺序存储又称顺序表。表中元素的逻辑顺序与其物理顺序相同。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="emsp-emsp-静态定义："><a href="#emsp-emsp-静态定义：" class="headerlink" title="&emsp;&emsp;静态定义："></a>&emsp;&emsp;静态定义：</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 50;					<span class="comment">//定义线性表的最大长度</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    ElemType data[MAXSIZE];			<span class="comment">//顺序表的元素</span></span><br><span class="line">    <span class="keyword">int</span> length;						<span class="comment">//顺序表的当前长度</span></span><br><span class="line">&#125;Sqlist;							<span class="comment">//顺序表的类型定义</span></span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<p>&emsp;&emsp;静态分配时，数据量小的话，会造成数组空间的浪费；而如果是数据量大的话，就会造成溢出，进而导致程序崩溃。所以我们采用下面更灵活的方式来</p>
+<span id="more"></span>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<h3 id="emsp-emsp-动态分配"><a href="#emsp-emsp-动态分配" class="headerlink" title="&emsp;&emsp;动态分配"></a>&emsp;&emsp;动态分配</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> InitSize 100				<span class="comment">//定义线性表的初始长度</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span>					</span><br><span class="line">    ElemType* data;					<span class="comment">//指示动态分配数组的指针</span></span><br><span class="line">    <span class="keyword">int</span> MAXSIZE,length;				<span class="comment">//数组的最大容量和当前个数</span></span><br><span class="line">&#125;Sqlist;</span><br></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<p>&emsp;&emsp;C的初始化分配语句为：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">L.data = (ElemType*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(ElemType)*InitSize);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这句话的意思是malloc向系统申请分配 （ sizeof(ElemType)*InitSize ）的内存空间，ElemType类型的指针指向这块内存的首地址。</p>
+<p>&emsp;&emsp;C++的初始化分配语句为：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">L.data = <span class="keyword">new</span> ElemType[InitSize];</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="顺序表上的基本操作："><a href="#顺序表上的基本操作：" class="headerlink" title="顺序表上的基本操作："></a>顺序表上的基本操作：</h2><h3 id="emsp-emsp-初始化"><a href="#emsp-emsp-初始化" class="headerlink" title="&emsp;&emsp;初始化"></a>&emsp;&emsp;初始化</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//初始化顺序表(静态分配)</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitSqList</span><span class="params">(Sqlist&amp; L)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAXSIZE; i++) &#123;</span><br><span class="line">		L.data[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (!L.data)</span><br><span class="line">		<span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">	L.length = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="emsp-emsp-求表长"><a href="#emsp-emsp-求表长" class="headerlink" title="&emsp;&emsp;求表长"></a>&emsp;&emsp;求表长</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Length</span><span class="params">(Sqlist L)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> L.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="emsp-emsp-按值查找"><a href="#emsp-emsp-按值查找" class="headerlink" title="&emsp;&emsp;按值查找"></a>&emsp;&emsp;按值查找</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocateElem</span><span class="params">(Sqlist L,ElemType e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L.length; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>( e == L[i])&#123;</span><br><span class="line">			<span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;最好情况：查找的元素就在表头，时间复杂度为O(1)</p>
+<p>&emsp;&emsp;最坏情况：查找的元素在表尾，时间复杂度为O(n)</p>
+<p>&emsp;&emsp;平均情况：比较的平均次数为 (n+1) / 2</p>
+<p>&emsp;&emsp;因此，线性表的按值查找操作算法时间复杂度为O(n)。</p>
+<h3 id="emsp-emsp-按位查找"><a href="#emsp-emsp-按位查找" class="headerlink" title="&emsp;&emsp;按位查找"></a>&emsp;&emsp;按位查找</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ElemType <span class="title">GetElem</span><span class="params">(Sqlist L,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> L[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="emsp-emsp-插入操作"><a href="#emsp-emsp-插入操作" class="headerlink" title="&emsp;&emsp;插入操作"></a>&emsp;&emsp;插入操作</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListInsert</span><span class="params">(Sqlist&amp; L,<span class="keyword">int</span> i,ElemType e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>)&#123;				<span class="comment">//判断输入的i是否符合范围</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>( L.length &gt; MAXSIZE)&#123;					<span class="comment">//如果存储空间已满，则插入失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = L.length; i &gt;= i; i--)&#123;		<span class="comment">//将第i个元素及之后的元素后移</span></span><br><span class="line">        L.data[i] = L.data[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    L.data[i] = e;</span><br><span class="line">    L.length ++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;最好情况：在表尾插入，时间复杂度为O(1)</p>
+<p>&emsp;&emsp;最坏情况：在表头插入，时间复杂度为O(n)</p>
+<p>&emsp;&emsp;平均情况：所需移动结点的平均次数为 n/2</p>
+<p>&emsp;&emsp;因此，线性表的插入操作算法时间复杂度为O(n)。</p>
+<h3 id="emsp-emsp-删除操作"><a href="#emsp-emsp-删除操作" class="headerlink" title="&emsp;&emsp;删除操作"></a>&emsp;&emsp;删除操作</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListDelete</span><span class="params">(Sqlist&amp; L,<span class="keyword">int</span> i,ElemTyep &amp;e)</span> </span>&#123; 		<span class="comment">//删除第i位上的数，并通过e返回其值</span></span><br><span class="line">    <span class="keyword">if</span>( i &lt; <span class="number">1</span> || i &gt; L.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    e = L.data[i];</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = i; i &lt; L.length; i++)&#123;</span><br><span class="line">        L.data[i<span class="number">-1</span>] = L.data[i];</span><br><span class="line">    &#125;</span><br><span class="line">    L.length --;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;最好情况：在表尾删除，时间复杂度为O(1)</p>
+<p>&emsp;&emsp;最坏情况：在表头删除，时间复杂度为O(n)</p>
+<p>&emsp;&emsp;平均情况：所需移动结点的平均次数为 (n-1) / 2</p>
+<p>&emsp;&emsp;因此，线性表的删除操作算法时间复杂度为O(n)。</p>
+<h2 id="动态分配的那点事"><a href="#动态分配的那点事" class="headerlink" title="动态分配的那点事"></a>动态分配的那点事</h2><h3 id="emsp-emsp-初始化顺序表"><a href="#emsp-emsp-初始化顺序表" class="headerlink" title="&emsp;&emsp;初始化顺序表"></a>&emsp;&emsp;初始化顺序表</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//初始化顺序表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitSeqList</span><span class="params">(SqList&amp; L)</span> </span>&#123;</span><br><span class="line">	L.data = (ElemType*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(ElemType) * InitSize);</span><br><span class="line">	<span class="comment">//L.data = new ElemType[InitSize];   //C++动态分配</span></span><br><span class="line">	L.length = <span class="number">0</span>;</span><br><span class="line">    L.MaxSize = InitSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="emsp-emsp-增加动态数组的长度"><a href="#emsp-emsp-增加动态数组的长度" class="headerlink" title="&emsp;&emsp;增加动态数组的长度"></a>&emsp;&emsp;增加动态数组的长度</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//增加动态数组的长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IncreaseSize</span><span class="params">(SqList&amp; L, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">	ElemType* p = L.data;  					<span class="comment">//新建指针p指向数组首部,也就是p指针和data指针同时指向数组首位元素</span></span><br><span class="line">	L.data = (ElemType*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(ElemType) * (L.MAXSIZE + len));  <span class="comment">//在别处开辟(MAXSIZE+len)*sizeof(ElemType)连续的空间，  并将data指针指向这片空间的首地址</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L.length; i++) &#123;</span><br><span class="line">		L.data[i] = p[i];					<span class="comment">//将数据复制到区域</span></span><br><span class="line">	&#125;</span><br><span class="line">	L.MAXSIZE += len;</span><br><span class="line">	<span class="built_in">free</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/04/22/%E9%A1%BA%E5%BA%8F%E8%A1%A8/">http://example.com/2021/04/22/%E9%A1%BA%E5%BA%8F%E8%A1%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/town.png" data-sites="facebook,twitter,wechat,weibo,qq,qzone"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/22/%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8/"><img class="prev-cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">特殊矩阵的压缩存储</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/22/%E5%8F%8C%E9%93%BE%E8%A1%A8/"><img class="next-cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">双链表</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/04/22/二叉排序树/" title="二叉排序树"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/sky.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">二叉排序树</div></div></a></div><div><a href="/2021/04/22/二叉树遍历与构造/" title="二叉树遍历（递归，非递归）和构造"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">二叉树遍历（递归，非递归）和构造</div></div></a></div><div><a href="/2021/04/22/区别/" title="顺序表和链表的区别"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cloud.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">顺序表和链表的区别</div></div></a></div><div><a href="/2021/04/22/单链表/" title="单链表"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">单链表</div></div></a></div><div><a href="/2021/04/22/双链表/" title="双链表"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">双链表</div></div></a></div><div><a href="/2021/04/22/哈夫曼树/" title="哈夫曼树"><img class="cover" src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/maple.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">哈夫曼树</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">顺序表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E9%9D%99%E6%80%81%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">&amp;emsp;&amp;emsp;静态定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">&amp;emsp;&amp;emsp;动态分配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8A%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">顺序表上的基本操作：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">&amp;emsp;&amp;emsp;初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E6%B1%82%E8%A1%A8%E9%95%BF"><span class="toc-number">1.2.2.</span> <span class="toc-text">&amp;emsp;&amp;emsp;求表长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">&amp;emsp;&amp;emsp;按值查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E6%8C%89%E4%BD%8D%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.4.</span> <span class="toc-text">&amp;emsp;&amp;emsp;按位查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.5.</span> <span class="toc-text">&amp;emsp;&amp;emsp;插入操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.6.</span> <span class="toc-text">&amp;emsp;&amp;emsp;删除操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E7%9A%84%E9%82%A3%E7%82%B9%E4%BA%8B"><span class="toc-number">1.3.</span> <span class="toc-text">动态分配的那点事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">&amp;emsp;&amp;emsp;初始化顺序表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-emsp-%E5%A2%9E%E5%8A%A0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">1.3.2.</span> <span class="toc-text">&amp;emsp;&amp;emsp;增加动态数组的长度</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/town.png')"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="Increase font size"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="Decrease font size"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: 'hello-cloudbase-8g6wbj0q74c9a86b',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'hello-cloudbase-8g6wbj0q74c9a86b',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="自信,沉稳,坚持,奋斗" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/diary/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', 'G-S9GN6Q5X0M', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
