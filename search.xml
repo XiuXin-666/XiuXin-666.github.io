@@ -4,11 +4,36 @@
   
     
     <entry>
-      <title>制作网页浏览器</title>
-      <link href="2021/05/27/%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-      <url>2021/05/27/%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      <title>【UE4】异步加载场景</title>
+      <link href="2021/05/28/%E3%80%90UE4%E3%80%91%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/"/>
+      <url>2021/05/28/%E3%80%90UE4%E3%80%91%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>在UE4中制作网页浏览器</h1><h2 id="先制作电脑的Actor">先制作电脑的Actor</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527164834135.png" alt="image-20210527164834135"></p><h2 id="再创建用于浏览器的UI界面">再创建用于浏览器的UI界面</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527164923961.png" alt="image-20210527164923961"></p><p>然后在Actor中的Widget中指定Widget实例</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165114380.png" alt="image-20210527165114380"></p><p>在插件管理器中搜索Web Browser ，开启并重启。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165303449.png" alt="image-20210527165303449"></p><p>在W_Web中添加 Webbrowser组件，将组件附加到Vecrtical box下面</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165710898.png" alt="image-20210527165710898"></p><p>Web Browser组件的属性：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165958118.png" alt="image-20210527165958118"></p><p>初始链接地址，是否支持透明</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527170207340.png" alt="image-20210527170207340"></p><p>相应事件的响应函数，我们可以在此进行事件的编写</p><p>On Url Changed : 当链接改变时，发生的事件</p><p>On Before Popup: 在窗口切换弹出时，发生的事件，用于浏览器上切换链接。</p><h2 id="下面开始事件函数的编写：">下面开始事件函数的编写：</h2><p>先给Actor添加碰撞检测盒子。</p><p>在BP_Computer中添加添加事件处理，因为要与Widget W_Web进行交互，运行其中的函数，所以要先强制转换，获取到Widget</p><p>的实例。</p><p>按F进入浏览器，所以要在BP_Computer类默认值中设置允许输入：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527224310638.png" alt="image-20210527224310638"></p><p>具体蓝图节点为以下：（蓝图节点为插件生成，之后可以使用插件在UE中直接生成）</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/BP_Computer-EventGraph.png" alt=""></p><p>W_Web具体蓝图节点如下：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/W_Web-EventGraph.png" alt=""></p><p>运行结果如下：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527225307093.png" alt="image-20210527225307093"></p><p>走过去，碰撞检测成功则按F进入全屏状态。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527225408055.png" alt="image-20210527225408055"></p><p>输入百度网址，进行检索，页面跳转的时候，后面背景会出现透明的现象，导致人物场景的出现。解决这个问题应该在WebBrowser组件下面添加一个白色画布就行了。</p><p>这个小功能可以适用在很多场景，比如街道播放大幻灯片，或者是播放视频，等等。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>【UE4】异步加载场景</h1><h2 id="异步加载场景：">异步加载场景：</h2><h2 id="操作步骤：">操作步骤：</h2><ol><li><p>准备两个地图，一个地图用作跳转使用</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528131001116.png" alt="image-20210528131001116"></p><p>这里我是使用ThirdPersonExampleMap作为主地图，Map_1 作为跳转地图。</p></li><li><p>在 Third 关卡蓝图中，添加begin事件，生成widget用于地图的加载UI</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528132531315.png" alt=""></p><p><img src="C:/Users/hasee/AppData/Roaming/Typora/typora-user-images/image-20210528131314678.png" alt="image-20210528131314678"></p><p>添加按钮操作事件On Clicked</p></li><li><p>在这个事件中，作为异步加载场景的主要事件</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/W_Lobby-EventGraph.png" alt=""></p><p>异步加载资源：Async Load Asset ,指定要加载的资源。在加载的同时，需要在窗口界面上添加一个Loading界面，所以还需要创建一个加载UI，W_Loading。</p></li><li><p>加载的时候就显示加载窗口，Create Widget 并 add to viewport</p></li><li><p>当加载完成时，就移除掉加载窗口，并打开地图场景。</p></li><li><p>基本步骤已经完成，快去试试吧</p></li></ol><p>这个功能的应用场景有关卡切换，异步加载其他资源。有待开发。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UE4蓝图小功能系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE4蓝图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【UE4】制作网页浏览器</title>
+      <link href="2021/05/27/%E3%80%90UE4%E3%80%91%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+      <url>2021/05/27/%E3%80%90UE4%E3%80%91%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>【UE4】制作网页浏览器</h1><h2 id="先制作电脑的Actor">先制作电脑的Actor</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527164834135.png" alt="image-20210527164834135"></p><h2 id="再创建用于浏览器的UI界面">再创建用于浏览器的UI界面</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527164923961.png" alt="image-20210527164923961"></p><p>然后在Actor中的Widget中指定Widget实例</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165114380.png" alt="image-20210527165114380"></p><p>在插件管理器中搜索Web Browser ，开启并重启。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165303449.png" alt="image-20210527165303449"></p><p>在W_Web中添加 Webbrowser组件，将组件附加到Vecrtical box下面</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165710898.png" alt="image-20210527165710898"></p><p>Web Browser组件的属性：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527165958118.png" alt="image-20210527165958118"></p><p>初始链接地址，是否支持透明</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527170207340.png" alt="image-20210527170207340"></p><p>相应事件的响应函数，我们可以在此进行事件的编写</p><p>On Url Changed : 当链接改变时，发生的事件</p><p>On Before Popup: 在窗口切换弹出时，发生的事件，用于浏览器上切换链接。</p><h2 id="下面开始事件函数的编写：">下面开始事件函数的编写：</h2><p>先给Actor添加碰撞检测盒子。</p><p>在BP_Computer中添加添加事件处理，因为要与Widget W_Web进行交互，运行其中的函数，所以要先强制转换，获取到Widget</p><p>的实例。</p><p>按F进入浏览器，所以要在BP_Computer类默认值中设置允许输入：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527224310638.png" alt="image-20210527224310638"></p><p>具体蓝图节点为以下：（蓝图节点为插件生成，之后可以使用插件在UE中直接生成）</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/BP_Computer-EventGraph.png" alt=""></p><p>W_Web具体蓝图节点如下：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/W_Web-EventGraph.png" alt=""></p><p>运行结果如下：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527225307093.png" alt="image-20210527225307093"></p><p>走过去，碰撞检测成功则按F进入全屏状态。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210527225408055.png" alt="image-20210527225408055"></p><p>输入百度网址，进行检索，页面跳转的时候，后面背景会出现透明的现象，导致人物场景的出现。解决这个问题应该在WebBrowser组件下面添加一个白色画布就行了。</p><p>这个小功能可以适用在很多场景，比如街道播放大幻灯片，或者是播放视频，等等。</p>]]></content>
       
       
       <categories>
