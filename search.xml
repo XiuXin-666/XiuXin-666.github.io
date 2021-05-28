@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【UE4】击碎玻璃物体破裂效果</title>
+      <link href="2021/05/28/%E3%80%90UE4%E3%80%91%E5%87%BB%E7%A2%8E%E7%8E%BB%E7%92%83%E7%89%A9%E4%BD%93%E7%A0%B4%E8%A3%82%E6%95%88%E6%9E%9C/"/>
+      <url>2021/05/28/%E3%80%90UE4%E3%80%91%E5%87%BB%E7%A2%8E%E7%8E%BB%E7%92%83%E7%89%A9%E4%BD%93%E7%A0%B4%E8%A3%82%E6%95%88%E6%9E%9C/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>【UE4】击碎玻璃物体破裂效果</h1><h2 id="步骤：">步骤：</h2><h3 id="首先要创建破碎物体的话，就需要开启一个插件，之前版本是可以直接创建的。">首先要创建破碎物体的话，就需要开启一个插件，之前版本是可以直接创建的。</h3><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528222357137.png" alt="image-20210528222357137"></p><p>重启之后，找到相应目录并找到相应物体</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528222812983.png" alt="image-20210528222812983"></p><p>右键SM_GlassWindow创建可破碎物体</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528222911007.png" alt="image-20210528222911007"></p><p>创建之后，进入设置参数cell Site Count （可破裂的块数），破碎的声音。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528223629910.png" alt="image-20210528223629910"></p><p>破裂的声音需要自己获取，<a href="http://xn--www-0v1ej96z.aigei.com">进入www.aigei.com</a> 下载一个玻璃破碎的声音。如果不是wav格式，就使用转换软件转换成wav，我这边推荐的是格式工厂。</p><p>创建一个文件夹，里面存音乐资源。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528224729167.png" alt="image-20210528224729167"></p><p>然后回到破碎网格体中，设置细节参数：</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528224958776.png" alt="image-20210528224958776"></p><p>声音资源文件好像应该放在第二个，第一个失效；其他参数可以查阅官方文档。</p><h3 id="创建玻璃Actor，BP-BrokenGlass">创建玻璃Actor，BP_BrokenGlass</h3><p>在其中添加destructable组件，添加完了之后，设置破碎网格体，设置玻璃材质。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528225714412.png" alt="image-20210528225714412"></p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528225737288.png" alt="image-20210528225737288"></p><h3 id="添加破碎响应事件">添加破碎响应事件</h3><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528230407233.png" alt="image-20210528230407233"></p><p>这里Apply Radius Damage，应用半径伤害，Apply Damage 应用伤害，参数不同，应用场景应该也有差异。</p><p>以后应该会更新这篇文章，详细做笔记。</p><h3 id="看看效果">看看效果</h3><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/%E7%8E%BB%E7%92%83%E7%A0%B4%E7%A2%8E.gif" alt=""></p><p>一般击碎玻璃之后，会让它进行消失，节约内存。</p><p>在之前的蓝图节点加入两个结点</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210528231808894.png" alt="image-20210528231808894"></p><p>这个功能就暂时到这了，可以用于许多场景。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UE4蓝图小功能系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE4蓝图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【UE4】异步加载场景</title>
       <link href="2021/05/28/%E3%80%90UE4%E3%80%91%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/"/>
       <url>2021/05/28/%E3%80%90UE4%E3%80%91%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/</url>
