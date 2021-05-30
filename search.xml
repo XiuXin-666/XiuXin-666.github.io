@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>【UE4】慢动作子弹时间</title>
+      <link href="2021/05/30/%E3%80%90UE4%E3%80%91%E6%85%A2%E5%8A%A8%E4%BD%9C%E5%AD%90%E5%BC%B9%E6%97%B6%E9%97%B4/"/>
+      <url>2021/05/30/%E3%80%90UE4%E3%80%91%E6%85%A2%E5%8A%A8%E4%BD%9C%E5%AD%90%E5%BC%B9%E6%97%B6%E9%97%B4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>【UE4】慢动作子弹时间</h1><h2 id="基本原理">基本原理</h2><p>​慢动作上是让时间流速变慢。重要蓝图节点：</p><p>​set global dilation （设置全局时间膨胀）</p><p>​set global pitch Modulation（设置全局音高调制）（只设置全局时间膨胀，声音不会变慢，加上此节点就会让时间变慢）</p><p>​<img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210530115426549.png" alt="image-20210530115426549"></p><p>Set custom time Dilation ：设置自定义时间膨胀，用于某个Actor上</p><p>如果想下全局变慢的情况下，让某个actor不受影响，例如主角，就可以set custom time dilation （ 1 / 你设置的事件膨胀系数）  ，让主角不受影响。</p><p>当然这个是要事件驱动的，可以自定义设置怎么启动这种效果。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UE4蓝图小功能系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE4蓝图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【UE4】顶部旋转方向轴制作</title>
+      <link href="2021/05/30/%E3%80%90UE4%E3%80%91%E9%A1%B6%E9%83%A8%E6%97%8B%E8%BD%AC%E6%96%B9%E5%90%91%E8%BD%B4%E5%88%B6%E4%BD%9C/"/>
+      <url>2021/05/30/%E3%80%90UE4%E3%80%91%E9%A1%B6%E9%83%A8%E6%97%8B%E8%BD%AC%E6%96%B9%E5%90%91%E8%BD%B4%E5%88%B6%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1>【UE4】顶部旋转方向轴制作</h1><h2 id="创建RotaionWidget蓝图">创建RotaionWidget蓝图</h2><p>​创建一个新的文件夹，里面新建两个Widget蓝图，分别用来显示旋转轴 和 旋转轴细节ui。</p><p>​<img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210529213652665.png" alt="image-20210529213652665"></p><p>​W_RotationWidget : 用来设置旋转轴的具体实现；W_UserHUD：用来顶部显示W_RotationWidget。</p><p>​W_RotationWidget详细设计：</p><p>先将UI的尺寸设置为Desired，</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210529214043721.png" alt="image-20210529214043721"></p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210529214142987.png" alt="image-20210529214142987"></p><p>​Overlay：重叠</p><p>上边是三角形矢量图，下面是坐标轴，资源链接为：</p><p>链接：<a href="https://pan.baidu.com/s/11ilqdb_ZmhKX0cTwp6xACg">https://pan.baidu.com/s/11ilqdb_ZmhKX0cTwp6xACg</a><br>提取码：nois</p><h2 id="W-UserHUD设置详情">W_UserHUD设置详情</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210529214619918.png" alt="image-20210529214619918"></p><h2 id="工作原理">工作原理</h2><p>​工作原理其实就是：RotationBar的长度设为1500，但是canvas panel 只设置500。要想要有旋转的效果，就要改变这个Image的translation。根据你要选择的方向朝前面，此时的translation X为0。根据Z（Yaw）的旋转，往左边转90度，这时的translation X改变成相应的translationX，这个应根据设置的不同而改变，我这里的是250。</p><p>​根据这个来得到一个转换关系。</p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210529220146659.png" alt="image-20210529220146659"></p><h2 id="具体蓝图节点">具体蓝图节点</h2><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210530100349436.png" alt="image-20210530100349436"></p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210530100414391.png" alt="image-20210530100414391"></p><p><img src="https://xiuxin-1304803037.cos.ap-shanghai.myqcloud.com/image-20210530100438029.png" alt="image-20210530100438029"></p><p>这里Event Tick 来调用事件，这样的做法其实不好，每帧都执行函数，会消耗很大的内存和cpu计算。</p><p>可以进行改进，转化为条件激活函数：当Z值改变的时候调用函数，而不用每帧都调用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UE4蓝图小功能系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UE4蓝图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【UE4】击碎玻璃物体破裂效果</title>
       <link href="2021/05/28/%E3%80%90UE4%E3%80%91%E5%87%BB%E7%A2%8E%E7%8E%BB%E7%92%83%E7%89%A9%E4%BD%93%E7%A0%B4%E8%A3%82%E6%95%88%E6%9E%9C/"/>
       <url>2021/05/28/%E3%80%90UE4%E3%80%91%E5%87%BB%E7%A2%8E%E7%8E%BB%E7%92%83%E7%89%A9%E4%BD%93%E7%A0%B4%E8%A3%82%E6%95%88%E6%9E%9C/</url>
@@ -383,16 +433,16 @@
     
     
     <entry>
-      <title>UE4网络基础</title>
-      <link href="2021/04/22/UE4%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
-      <url>2021/04/22/UE4%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</url>
+      <title>【UE4】网络基础</title>
+      <link href="2021/04/22/%E3%80%90UE4%E3%80%91%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
+      <url>2021/04/22/%E3%80%90UE4%E3%80%91%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</url>
       
-        <content type="html"><![CDATA[<h2 id="Actor-replication可以简单的理解为："><a href="#Actor-replication可以简单的理解为：" class="headerlink" title="Actor replication可以简单的理解为："></a><strong>Actor replication</strong>可以简单的理解为：</h2><p>在服务器上面生成一份一模一样的actor或者是其他数据，然后传递给每个客户端，其他玩家就都可以看到这个物体。</p><p>C++开启方式：</p><p>​        在c++类 构造函数中，添加 ：bReplicates = true;</p><h2 id="Property-replicateion"><a href="#Property-replicateion" class="headerlink" title="Property replicateion :"></a><strong>Property replicateion</strong> :</h2><p>​        添加头文件：#include “Net/UnrealNetwork.h”</p><p>​        C++ 开启方式：</p><p>属性前面添加一个宏定义：UPROPERTY（Replicated）</p><p>在cpp 文件中，在 GetLifetimeReplicatedProps 函数中添加：DOREPLIFETIME（类名称，变量名）</p><p> 不需要声明该函数</p><span id="more"></span><h2 id="RepNotify："><a href="#RepNotify：" class="headerlink" title="RepNotify："></a><strong>RepNotify</strong>：</h2><p>如果一个变量设置为Rep_Notify，当变量发生复制时，服务端和收到该值的客户端都可以调用一个自定义的函数</p><p>​        注意C++的版本略有区别，仅在客户端调用函数</p><p>设置方法：</p><p>​        蓝图：设置为Rep_Notify</p><p>​        C++：UPROPERTY(ReplicatedUsing = 执行的函数名)</p><p>​        例如：</p><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">UPROPERTY</span>(ReplicatedUsing = OnRep_Armor)</span><br><span class="line"><span class="keyword">float</span> Armor = <span class="number">100.f</span>;</span><br><span class="line"><span class="built_in">UFUNCTION</span>()</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnRep_Armor</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure><p>同时也不要忘记加上PropertyReplicattion 的一些设置</p><p>​                </p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="Actor-replication可以简单的理解为："><strong>Actor replication</strong>可以简单的理解为：</h2><p>在服务器上面生成一份一模一样的actor或者是其他数据，然后传递给每个客户端，其他玩家就都可以看到这个物体。</p><p>C++开启方式：</p><p>​在c++类 构造函数中，添加 ：bReplicates = true;</p><h2 id="Property-replicateion"><strong>Property replicateion</strong> :</h2><p>​添加头文件：#include “Net/UnrealNetwork.h”</p><p>​C++ 开启方式：</p><p>属性前面添加一个宏定义：UPROPERTY（Replicated）</p><p>在cpp 文件中，在 GetLifetimeReplicatedProps 函数中添加：DOREPLIFETIME（类名称，变量名）</p><p>不需要声明该函数</p><span id="more"></span><h2 id="RepNotify："><strong>RepNotify</strong>：</h2><p>如果一个变量设置为Rep_Notify，当变量发生复制时，服务端和收到该值的客户端都可以调用一个自定义的函数</p><p>​注意C++的版本略有区别，仅在客户端调用函数</p><p>设置方法：</p><p>​蓝图：设置为Rep_Notify</p><p>​C++：UPROPERTY(ReplicatedUsing = 执行的函数名)</p><p>​例如：</p><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">UPROPERTY</span>(ReplicatedUsing = OnRep_Armor)</span><br><span class="line"><span class="keyword">float</span> Armor = <span class="number">100.f</span>;</span><br><span class="line"><span class="built_in">UFUNCTION</span>()</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnRep_Armor</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure><p>同时也不要忘记加上PropertyReplicattion 的一些设置</p><p>​</p>]]></content>
       
       
       <categories>
           
-          <category> Unreal </category>
+          <category> UE4蓝图 </category>
           
       </categories>
       
